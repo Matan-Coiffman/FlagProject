@@ -1,9 +1,10 @@
 import pygame
+import random
 
 
-def move_player(player, screenSize):
-    player_x_direction = 0
-    player_y_direction = 0
+def move_player(player, matrix):
+    y = 0
+    x = 0
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
@@ -15,8 +16,9 @@ def move_player(player, screenSize):
             elif event.key == pygame.K_DOWN:
                 player_y_direction = 1
 
-    player.x += player_x_direction * player.speed
-    player.y += player_y_direction * player.speed
 
-    player.x = max(0, min(player.x, screenSize[0] - player.width))
-    player.y = max(0, min(player.y, screenSize[1] - player.height))
+# def random_bushes(grass_images, grass_image, SCREEN_HEIGHT, SCREEN_WIDTH):
+#     for i in range(20):
+#         x = random.randint(0, SCREEN_WIDTH - grass_image.get_width())
+#         y = random.randint(0, SCREEN_HEIGHT - grass_image.get_height())
+#         grass_images.append((x, y))
