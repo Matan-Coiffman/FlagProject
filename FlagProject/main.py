@@ -22,6 +22,7 @@ for row in range(SCREEN_HEIGHT // cell_height_jump):
         matrix_row.append("0")
     matrix.append(matrix_row)
 
+
 for i in range(20):
     x = random.randint(0, SCREEN_WIDTH - grass_image.get_width())
     y = random.randint(0, SCREEN_HEIGHT - grass_image.get_height())
