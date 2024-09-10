@@ -18,14 +18,9 @@ matrix = []
 for row in range(SCREEN_HEIGHT // cell_height_jump):
     matrix_row = []
     for col in range(SCREEN_WIDTH // cell_width_jump):
-        matrix_row.append(
-                ["Empty", col * cell_width_jump, row * cell_height_jump])
+        matrix_row.append("0")
     matrix.append(matrix_row)
 
-for row in matrix:
-    for cell in row:
-        print(cell, end="")  # Print the state with padding
-    print()
 while run:
     screen.fill(background)
     pygame.display.flip()
