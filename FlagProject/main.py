@@ -24,12 +24,13 @@ mine_image = pygame.image.load(r'bin/mine.png')
 soldier_image = pygame.image.load(
         r'bin/soldier.png')
 flag_image = pygame.image.load(r'bin/flag.png')
+explotion_image = pygame.image.load(r'bin/explotion.png')
 
 matrix = []
 placed_mines = []
 grass_images = []
 
-
+explotion_image = pygame.transform.scale(explotion_image, (50, 50))
 grass_image = pygame.transform.scale(grass_image, (50, 50))
 mine_image = pygame.transform.scale(mine_image,
                                     (cell_width_jump * 3, cell_height_jump))
@@ -37,7 +38,6 @@ soldier_image = pygame.transform.scale(soldier_image, (
     cell_width_jump * 5, cell_height_jump * 6))
 flag_image = pygame.transform.scale(flag_image, (
     cell_width_jump * 3, cell_height_jump * 3))
-
 
 for row in range(25):
     matrix_row = []
@@ -49,7 +49,6 @@ placed_mines = methods.place_ts(matrix, placed_mines)
 placed_mines_Index = copy.deepcopy(
         placed_mines)
 
-# Grass placement
 for i in range(20):
     x = random.randint(0, SCREEN_WIDTH - grass_image.get_width())
     y = random.randint(0, SCREEN_HEIGHT - grass_image.get_height())
@@ -98,10 +97,11 @@ while run:
         player_pos[0] * cell_width_jump, player_pos[1] * cell_height_jump))
 
     if game_over:
-        switch_screen(grid_screen, player_pos)
-        pygame.time.delay(1000)
+        screen.blit(explotion_image, (player_pos[0]*cell_width_jump, (player_pos[1]+4)*cell_height_jump))
         display_message(message)
         pygame.time.delay(3000)
+        switch_screen(grid_screen, player_pos)
+        pygame.time.delay(1000)
         run = False
     else:
         pygame.display.flip()
@@ -116,7 +116,6 @@ while run:
 
     if not game_over:
         player_pos = methods.move_player_matrix(player_pos)
-
         if methods.is_bombed(player_pos, placed_mines_Index):
             message = "Game Over!"
             game_over = True
