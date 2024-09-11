@@ -80,7 +80,7 @@ def switch_screen(screen_to_display, player_pos):
 
 
 def display_message(message):
-    text = font.render(message, True, (255, 0, 0))  # Red color for visibility
+    text = font.render(message, True, (255, 0, 0))
     screen.blit(text, (SCREEN_WIDTH // 2 - text.get_width() // 2,
                        SCREEN_HEIGHT // 2 - text.get_height() // 2))
     pygame.display.flip()
@@ -98,6 +98,8 @@ while run:
         player_pos[0] * cell_width_jump, player_pos[1] * cell_height_jump))
 
     if game_over:
+        switch_screen(grid_screen, player_pos)
+        pygame.time.delay(1000)
         display_message(message)
         pygame.time.delay(3000)
         run = False
